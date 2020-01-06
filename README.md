@@ -212,4 +212,4 @@ dependencies {
   <td>截图，返回一个bitmap</td>
  </tr>
 </table>
- ![示例](https://github.com/ray-tianfeng/tree-view/blob/master/img/design.gif)
+ ![示例](https://github.com/ray-tianfeng/tree-view/blob/master/img/design.jpg)
