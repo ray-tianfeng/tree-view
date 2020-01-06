@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zl.log.tree.demo">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="com.asus.msa.SupplementaryDID.ACCESS" />
+    <application
+        android:allowBackup="true"
+        android:label="LogTreeDemo"
+        android:supportsRtl="true">
+        <activity android:name="com.zl.log.tree.demo.MainActivity"
+            android:screenOrientation="landscape"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <meta-data android:name="XIYOU_SDK_VERSION" android:value="1.9.5"/>
+        <meta-data android:name="XY_GAME_MAIN_ACTIVITY_NAME"  android:value="test"/>
+        <activity
+            android:name="com.xiyou.sdk.XiYouSplashActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+        <activity
+            android:name="com.xiyou.sdk.p.view.activity.XiYouMainActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.xiyou.sdk.p.view.activity.XiYouPayActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation" />
+
+        <activity
+            android:name="com.xiyou.sdk.p.view.widget.XYSafeWebViewActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation" />
+
+        <service android:name="com.xiyou.sdk.p.view.widget.FloatService"/>
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+<!--        <provider-->
+<!--            android:name="com.xiyou.sdk.widget.XiYouFileProvider"-->
+<!--            android:authorities="com.zl.log.tree.demo.xy_provider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.FILE_PROVIDER_PATHS" />-->
+<!--        </provider>-->
+    </application>
+
+</manifest>
