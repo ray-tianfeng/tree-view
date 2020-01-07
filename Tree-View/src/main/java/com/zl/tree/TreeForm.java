@@ -73,14 +73,14 @@ public class TreeForm {
     }
 
     private void initTreeForm(){
-        Rect treeRect = measureText(treeData.getTreeName());
+        Rect treeRect = measureTextByPadding(treeData.getTreeName());
         treeRect.bottom = treeRect.height();
         treeRect.top = 0;
         setRegionRect(treeRect);
         setTrunkForms(new ArrayList<TrunkForm>());
         for(int t = 0; t < treeData.getTrunks().size(); t++){//横向树枝
             TreeData.Trunk trunk = treeData.getTrunks().get(t);
-            Rect trunkRect = measureText(trunk.getTrunkName());
+            Rect trunkRect = measureTextByPadding(trunk.getTrunkName());
             int trunkCenterX = (nodeMaxWidth + treeConfig.trunkWidth) * t + findTrunkMaxNodeWidthByData(trunk)/2;
             landscapeCenter(trunkCenterX, trunkRect);
             trunkRect.bottom = treeRect.bottom + trunkRect.height() + (int)(treeConfig.trunkHeight*1.5);
@@ -95,7 +95,7 @@ public class TreeForm {
             int branchBaseTop = trunkRect.bottom + treeConfig.trunkHeight;
             for(int b = 0; b < trunk.getBranches().size(); b++){
                 TreeData.Trunk.Branch branch = trunk.getBranches().get(b);
-                Rect branchRect = measureText(branch.getBranchName());
+                Rect branchRect = measureTextByPadding(branch.getBranchName());
                 landscapeCenter(trunkCenterX, branchRect);
                 branchRect.bottom = branchRect.height() + branchBaseTop;
                 branchRect.top = branchBaseTop;
@@ -110,7 +110,7 @@ public class TreeForm {
                 if(branch.getLeafs() == null) continue;
                 for(int f = 0; f < branch.getLeafs().size(); f++){
                     TreeData.Trunk.Branch.Leaf leaf = branch.getLeafs().get(f);
-                    Rect leafRect = measureText(leaf.getLeafName());
+                    Rect leafRect = measureTextByPadding(leaf.getLeafName());
                     int leafCenterX = branchRect.right + treeConfig.leafWidth + nodeMaxWidth/2;
                     landscapeCenter(leafCenterX, leafRect);
                     if(f == 0){
@@ -145,7 +145,7 @@ public class TreeForm {
     private int findTreeMaxNodeWidthByData(){
         int nodeMaxWidth = 0;
         for(TreeData.Trunk trunk : treeData.getTrunks()){
-            int trunkWidth = measureText(trunk.getTrunkName()).width();
+            int trunkWidth = measureTextByPadding(trunk.getTrunkName()).width();
             int trunkNodeMaxWidth = findTrunkMaxNodeWidthByData(trunk);
             if(trunkWidth > nodeMaxWidth){
                 nodeMaxWidth = trunkWidth;
@@ -160,13 +160,13 @@ public class TreeForm {
     private int findTrunkMaxNodeWidthByData(TreeData.Trunk trunk){
         int nodeMaxWidth = 0;
         for(TreeData.Trunk.Branch branch : trunk.getBranches()){
-            int branchWidth = measureText(branch.getBranchName()).width();
+            int branchWidth = measureTextByPadding(branch.getBranchName()).width();
             if(branchWidth > nodeMaxWidth){
                 nodeMaxWidth = branchWidth;
             }
             if(branch.getLeafs() != null){
                 for(TreeData.Trunk.Branch.Leaf leaf : branch.getLeafs()){
-                    int leafWidth = measureText(leaf.getLeafName()).width();
+                    int leafWidth = measureTextByPadding(leaf.getLeafName()).width();
                     if(leafWidth > nodeMaxWidth){
                         nodeMaxWidth = leafWidth;
                     }
@@ -206,7 +206,7 @@ public class TreeForm {
         }
     }
 
-    public Rect measureText(String name){
+    public Rect measureTextByPadding(String name){
         Paint pFont = new Paint();
         pFont.setTextSize(treeConfig.textSize);
         Rect rect = new Rect();

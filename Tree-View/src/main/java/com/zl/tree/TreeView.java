@@ -125,6 +125,7 @@ public class TreeView extends View {
         paintDesText.setColor(Color.WHITE);
         paintDesText.setDither(true);
         paintDesText.setStrokeWidth(1);
+        paintDesText.setTextAlign(Paint.Align.CENTER);
         paintDesText.setTextSize(treeConfig.textSize - 5);
     }
 
@@ -141,6 +142,7 @@ public class TreeView extends View {
         paintText.setColor(state.color);
         paintText.setDither(true);
         paintText.setStrokeWidth(1);
+        paintText.setTextAlign(Paint.Align.CENTER);
         paintText.setTextSize(treeConfig.textSize);
     }
 
@@ -296,8 +298,11 @@ public class TreeView extends View {
         canvas.restore();
     }
 
-    private void drawTextInRectCenter(Canvas canvas, String text, Rect rect){
-        canvas.drawText(text, rect.left + treeConfig.paddingWidth / 2, rect.bottom - treeConfig.paddingHeight/2, paintText);
+    private void drawTextInRectCenter(Canvas canvas, String text, Rect rectD){
+        Paint.FontMetrics fontMetrics=paintText.getFontMetrics();
+        float distance=(fontMetrics.bottom - fontMetrics.top)/2 - fontMetrics.bottom;
+        float baseline=rectD.centerY()+distance;
+        canvas.drawText(text, rectD.centerX(), baseline, paintText);
     }
 
     @Override
