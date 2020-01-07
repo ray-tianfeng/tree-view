@@ -33,8 +33,8 @@ public class MainActivity extends Activity {
         ArrayList<TreeData.Trunk> trunks = new ArrayList<>();
         trunks.add(trunk);
         trunks.add(trunk);
-        trunks.add(trunk);
-        trunks.add(trunk2);
+//        trunks.add(trunk);
+//        trunks.add(trunk2);
 
         TreeData.Trunk.Branch branch = new TreeData.Trunk.Branch();
         branch.setBranchName("纵向树枝1");
@@ -69,6 +69,7 @@ public class MainActivity extends Activity {
         treeConfig.setBackGroundColor(Color.WHITE);
         TreeView treeView = new TreeView(this, treeData, new TreeConfig());
         relativeLayout.addView(treeView);
+        treeView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
         relativeLayout.setBackgroundResource(R.drawable.bg);
         setContentView(relativeLayout);
     }

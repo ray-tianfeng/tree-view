@@ -61,7 +61,6 @@ public class TreeView extends View {
         screenHeight = display.getHeight();
         treeForm = new TreeForm(treeConfig, treeData);
         stateCalculate = new StateCalculate(treeConfig);
-        arrangement();
         resetPaint();
         setFocusableInTouchMode(true);
     }
@@ -69,10 +68,10 @@ public class TreeView extends View {
     public void arrangement(){
         if(treeForm.width + stateCalculate.width + treeConfig.interval_state < screenWidth){
             viewWidth = treeForm.width + stateCalculate.width + treeConfig.interval_state;
-            stateCalculate.move(treeForm.width + treeConfig.interval_state, treeConfig.state_margin_top);
+            stateCalculate.moveTo(treeForm.width + treeConfig.interval_state, treeConfig.state_margin_top);
         }else{
             viewWidth = screenWidth;
-            stateCalculate.move(screenWidth - stateCalculate.width, treeConfig.state_margin_top);
+            stateCalculate.moveTo(screenWidth - stateCalculate.width, treeConfig.state_margin_top);
         }
         if(treeForm.height > stateCalculate.height + treeConfig.state_margin_top){
             if(treeForm.height > screenHeight){
@@ -148,6 +147,14 @@ public class TreeView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        arrangement();
+        if(MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY){
+            viewWidth = MeasureSpec.getSize(widthMeasureSpec);
+            stateCalculate.moveTo(viewWidth - stateCalculate.width, treeConfig.state_margin_top);
+        }
+        if(MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY){
+            viewHeight = MeasureSpec.getSize(heightMeasureSpec);
+        }
         super.setMeasuredDimension(viewWidth, viewHeight);
     }
 

@@ -44,6 +44,15 @@ public class StateCalculate {
         }
     }
 
+    public void moveTo(int dx, int dy){
+        StateForm stateForm = stateForms.get(0);
+        int startX = stateForm.getPoint().x;
+        int startY = stateForm.getPoint().y;
+        int offsetX = dx - startX;
+        int offsetY = dy - startY;
+        move(offsetX, offsetY);
+    }
+
     private void calculationSpace(){
         for(StateForm stateForm : stateForms){
             width = stateForm.getRect().right > width ? stateForm.getRect().right : width;
