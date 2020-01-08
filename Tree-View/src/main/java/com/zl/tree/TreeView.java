@@ -17,6 +17,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Time: 2019/12/16 0016
  * Author: zoulong
@@ -366,8 +369,21 @@ public class TreeView extends View {
         drawState(canvas);
         //step5 画节点描述信息
         drawDes(canvas);
+//        //画签名
+//        watermark(canvas);
         //画笔重置
         resetPaint();
         return bitmap;
+    }
+
+    private void watermark(Canvas canvas){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd. HH:mm:ss");// HH:mm:ss
+        Date date = new Date(System.currentTimeMillis());
+        String watermarkString = "西游网 " + simpleDateFormat.format(date);
+        Rect rect = new Rect();
+        paintText.getTextBounds(watermarkString, 0, watermarkString.length(), rect);
+        rect.offsetTo(viewWidth - rect.width() - 50, viewHeight - rect.height() - 30);
+        paintText.setColor(State.NORMAL.color);
+        drawTextInRectCenter(canvas, watermarkString, rect);
     }
 }
